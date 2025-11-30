@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>CalcX Pro</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #0a1a33;
+        font-family: Arial, sans-serif;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header {
+        width: 100%;
+        padding: 20px;
+        background: #091527;
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        color: #ffffff;
+        border-bottom: 2px solid #14365c;
+    }
+
+    .tabs {
+        margin-top: 20px;
+        display: flex;
+        gap: 15px;
+    }
+
+    .tab {
+        padding: 10px 20px;
+        background: #14365c;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+
+    .tab:hover {
+        background: #1d4d85;
+    }
+
+    .active {
+        background: #1d4d85;
+        border: 2px solid white;
+    }
+
+    .calc-container {
+        margin-top: 30px;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        width: 350px;
+        color: black;
+        box-sizing: border-box;
+        display: none;
+    }
+
+    .calc-container.active-calc {
+        display: block;
+    }
+
+    .pantalla {
+        width: 100%;
+        height: 60px;
+        background: #e9e9e9;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        padding: 10px;
+        font-size: 22px;
+        text-align: right;
+        overflow-x: auto;
+        box-sizing: border-box;
+    }
+
+    .botones {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+    }
+
+    button {
+        padding: 18px;
+        font-size: 18px;
+        cursor: pointer;
+        background: #14365c;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #1d4d85;
+    }
+
+    .conversion-box {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    input, select {
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #14365c;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    footer {
+        margin-top: 40px;
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+        font-size: 14px;
+        background: #091527;
+        border-top: 2px solid #14365c;
+        color: #b7c7dd;
+    }
+</style>
+</head>
+<body>
+
+<header>CalcX Pro</header>
+
+<div class="tabs">
+    <div class="tab active" onclick="showCalc(1)">Normal</div>
+    <div class="tab" onclick="showCalc(2)">Científica</div>
+    <div class="tab" onclick="showCalc(3)">Divisas</div>
+</div>
+
+<!-- CALCULADORA NORMAL -->
+<div id="calc1" class="calc-container active-calc">
+    <div class="pantalla" id="screen1"></div>
+    <div class="botones">
+        <button onclick="press('7','screen1')">7</button>
+        <button onclick="press('8','screen1')">8</button>
+        <button onclick="press('9','screen1')">9</button>
+        <button onclick="press('/','screen1')">÷</button>
+
+        <button onclick="press('4','screen1')">4</button>
+        <button onclick="press('5','screen1')">5</button>
+        <button onclick="press('6','screen1')">6</button>
+        <button onclick="press('*','screen1')">×</button>
+
+        <button onclick="press('1','screen1')">1</button>
+        <button onclick="press('2','screen1')">2</button>
+        <button onclick="press('3','screen1')">3</button>
+        <button onclick="press('-','screen1')">−</button>
+
+        <button onclick="press('0','screen1')">0</button>
+        <button onclick="press('.','screen1')">.</button>
+        <button onclick="clearScreen('screen1')">C</button>
+        <button onclick="press('+','screen1')">+</button>
+
+        <button style="grid-column: span 4; background:#1d4d85;" onclick="calculate('screen1')">=</button>
+    </div>
+</div>
+
+<!-- CALCULADORA CIENTÍFICA -->
+<div id="calc2" class="calc-container">
+    <div class="pantalla" id="screen2"></div>
+    <div class="botones">
+        <button onclick="press('sin(','screen2')">sin</button>
+        <button onclick="press('cos(','screen2')">cos</button>
+        <button onclick="press('tan(','screen2')">tan</button>
+        <button onclick="press('(','screen2')">(</button>
+
+        <button onclick="press('log(','screen2')">log</button>
+        <button onclick="press('sqrt(','screen2')">√</button>
+        <button onclick="press('^','screen2')">^</button>
+        <button onclick="press(')','screen2')">)</button>
+
+        <!-- Números -->
+        <button onclick="press('7','screen2')">7</button>
+        <button onclick="press('8','screen2')">8</button>
+        <button onclick="press('9','screen2')">9</button>
+        <button onclick="press('/','screen2')">÷</button>
+
+        <button onclick="press('4','screen2')">4</button>
+        <button onclick="press('5','screen2')">5</button>
+        <button onclick="press('6','screen2')">6</button>
+        <button onclick="press('*','screen2')">×</button>
+
+        <button onclick="press('1','screen2')">1</button>
+        <button onclick="press('2','screen2')">2</button>
+        <button onclick="press('3','screen2')">3</button>
+        <button onclick="press('-','screen2')">−</button>
+
+        <button onclick="press('0','screen2')">0</button>
+        <button onclick="press('.','screen2')">.</button>
+        <button onclick="clearScreen('screen2')">C</button>
+        <button onclick="press('+','screen2')">+</button>
+
+        <button style="grid-column: span 4; background:#1d4d85;" onclick="calculate('screen2')">=</button>
+    </div>
+</div>
+
+<!-- CALCULADORA DE DIVISAS -->
+<div id="calc3" class="calc-container">
+    <div class="conversion-box">
+        <input type="number" id="amount" placeholder="Cantidad en moneda origen">
+
+        <select id="from">
+            <option value="USD">Dólar (USD)</option>
+            <option value="DOP">Peso Dominicano (DOP)</option>
+            <option value="EUR">Euro (EUR)</option>
+        </select>
+
+        <select id="to">
+            <option value="USD">Dólar (USD)</option>
+            <option value="DOP">Peso Dominicano (DOP)</option>
+            <option value="EUR">Euro (EUR)</option>
+        </select>
+
+        <button onclick="convertir()">Convertir</button>
+
+        <div class="pantalla" id="screen3"></div>
+    </div>
+</div>
+
+<footer>
+    © 2025 CalcX Pro — Todos los derechos reservados.
+</footer>
+
+<script>
+function showCalc(num) {
+    document.querySelectorAll(".calc-container").forEach(c => c.classList.remove("active-calc"));
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+
+    document.getElementById("calc" + num).classList.add("active-calc");
+    document.querySelectorAll(".tab")[num - 1].classList.add("active");
+}
+
+function press(value, screen) {
+    document.getElementById(screen).innerText += value;
+}
+
+function clearScreen(screen) {
+    document.getElementById(screen).innerText = "";
+}
+
+function calculate(screen) {
+    try {
+        let expr = document.getElementById(screen).innerText
+            .replace(/√/g, "Math.sqrt")
+            .replace(/sin/g, "Math.sin")
+            .replace(/cos/g, "Math.cos")
+            .replace(/tan/g, "Math.tan")
+            .replace(/log/g, "Math.log")
+            .replace(/\^/g, "**");
+
+        document.getElementById(screen).innerText = eval(expr);
+    } catch {
+        document.getElementById(screen).innerText = "Error";
+    }
+}
+
+function convertir() {
+    let amount = parseFloat(document.getElementById("amount").value);
+    let from = document.getElementById("from").value;
+    let to = document.getElementById("to").value;
+
+    let rates = {
+        USD: 1,
+        DOP: 59,
+        EUR: 0.92
+    };
+
+    let result = (amount / rates[from]) * rates[to];
+    document.getElementById("screen3").innerText = result.toFixed(2);
+}
+</script>
+
+</body>
+</html>
