@@ -7,82 +7,83 @@
     body {
         margin: 0;
         padding: 0;
-        background: #0a1a33;
+        background: #06152B;
         font-family: Arial, sans-serif;
         color: white;
         display: flex;
         flex-direction: column;
         align-items: center;
+        min-height: 100vh;
     }
 
     header {
         width: 100%;
-        padding: 20px;
-        background: #091527;
+        padding: 18px;
+        background: #091E3A;
         text-align: center;
-        font-size: 28px;
+        font-size: 26px;
         font-weight: bold;
-        letter-spacing: 1px;
-        border-bottom: 2px solid #14365c;
+        border-bottom: 2px solid #133A70;
     }
 
+    /* --- TABS --- */
     .tabs {
         margin-top: 20px;
         display: flex;
-        gap: 15px;
+        gap: 12px;
         flex-wrap: wrap;
         justify-content: center;
+        width: 95%;
     }
 
     .tab {
-        padding: 10px 20px;
-        background: #14365c;
+        padding: 10px 16px;
+        background: #2D7CE3;
         border-radius: 8px;
         cursor: pointer;
         font-size: 16px;
-        transition: 0.3s;
+        min-width: 100px;
         text-align: center;
-        min-width: 110px;
-    }
-
-    .tab:hover {
-        background: #1d4d85;
+        transition: 0.3s;
     }
 
     .active {
-        background: #1d4d85;
+        background: #60A4FF;
         border: 2px solid white;
     }
 
+    /* --- CONTENEDOR DE LA CALCULADORA --- */
     .calc-container {
-        margin-top: 30px;
+        margin-top: 25px;
         background: white;
-        padding: 30px;
-        border-radius: 15px;
-        width: 350px;
+        padding: 25px;
+        border-radius: 12px;
+        width: 380px; /* para PC */
         color: black;
-        box-sizing: border-box;
         display: none;
+        box-sizing: border-box;
     }
 
-    .calc-container.active-calc {
+    .active-calc {
         display: block;
     }
 
+    /* --- PANTALLA --- */
     .pantalla {
         width: 100%;
         height: 60px;
-        background: #e9e9e9;
+        background: #e7e7e7;
         border-radius: 8px;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
         padding: 10px;
-        font-size: 22px;
+        font-size: 24px;
         text-align: right;
         overflow-x: auto;
         white-space: nowrap;
         box-sizing: border-box;
     }
 
+    /* --- BOTONES --- */
     .botones {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -92,18 +93,18 @@
     button {
         padding: 18px;
         font-size: 18px;
-        cursor: pointer;
-        background: #14365c;
+        background: #2D7CE3;
         color: white;
-        border: none;
         border-radius: 10px;
-        transition: 0.3s;
+        border: none;
+        cursor: pointer;
     }
 
-    button:hover {
-        background: #1d4d85;
+    button:active {
+        background: #1762C0;
     }
 
+    /* --- DIVISAS --- */
     .conversion-box {
         display: flex;
         flex-direction: column;
@@ -112,27 +113,15 @@
 
     input, select {
         padding: 12px;
-        font-size: 16px;
         border-radius: 8px;
-        border: 1px solid #14365c;
+        border: 1px solid black;
+        font-size: 16px;
         width: 100%;
-        box-sizing: border-box;
     }
 
-    footer {
-        margin-top: 40px;
-        padding: 20px;
-        text-align: center;
-        width: 100%;
-        font-size: 14px;
-        background: #091527;
-        border-top: 2px solid #14365c;
-        color: #b7c7dd;
-    }
-
-    /* ============================
-         VERSIÓN MÓVIL
-       ============================ */
+    /* ================================
+         MÓVILES — ADAPTACIÓN REAL
+       ================================ */
     @media (max-width: 480px) {
 
         header {
@@ -140,9 +129,11 @@
             padding: 15px;
         }
 
+        /* ajusta contenedor */
         .calc-container {
-            width: 90%;
-            padding: 20px;
+            width: 92% !important;   /* ahora SI se adapta */
+            padding: 18px;
+            margin-top: 15px;
         }
 
         .pantalla {
@@ -150,41 +141,38 @@
             font-size: 20px;
         }
 
-        .botones {
-            gap: 10px;
-        }
-
         button {
-            padding: 16px;
+            padding: 15px;
             font-size: 16px;
         }
 
-        .tab {
-            min-width: 90px;
-            padding: 8px 12px;
-            font-size: 14px;
+        .tabs {
+            width: 100%;
+            gap: 8px;
         }
 
-        footer {
-            font-size: 12px;
+        .tab {
+            min-width: 85px;
+            font-size: 14px;
+            padding: 8px 10px;
         }
     }
 
-    /* Pantallas súper pequeñas (iPhone SE y similares) */
+    /* teléfonos muy pequeños */
     @media (max-width: 360px) {
 
-        header {
-            font-size: 20px;
+        .calc-container {
+            width: 95% !important;
         }
 
         .pantalla {
-            height: 50px;
             font-size: 18px;
+            height: 48px;
         }
 
         button {
-            padding: 14px;
             font-size: 15px;
+            padding: 13px;
         }
 
         .tab {
@@ -192,7 +180,18 @@
             font-size: 13px;
         }
     }
+
+    footer {
+        margin-top: 35px;
+        color: #b8c9e6;
+        padding: 15px;
+        text-align: center;
+        width: 100%;
+        font-size: 14px;
+        border-top: 2px solid #133A70;
+    }
 </style>
+
 
 </head>
 <body>
