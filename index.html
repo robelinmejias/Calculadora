@@ -23,7 +23,6 @@
         font-size: 28px;
         font-weight: bold;
         letter-spacing: 1px;
-        color: #ffffff;
         border-bottom: 2px solid #14365c;
     }
 
@@ -31,6 +30,8 @@
         margin-top: 20px;
         display: flex;
         gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .tab {
@@ -40,6 +41,8 @@
         cursor: pointer;
         font-size: 16px;
         transition: 0.3s;
+        text-align: center;
+        min-width: 110px;
     }
 
     .tab:hover {
@@ -76,6 +79,7 @@
         font-size: 22px;
         text-align: right;
         overflow-x: auto;
+        white-space: nowrap;
         box-sizing: border-box;
     }
 
@@ -125,7 +129,71 @@
         border-top: 2px solid #14365c;
         color: #b7c7dd;
     }
+
+    /* ============================
+         VERSIÓN MÓVIL
+       ============================ */
+    @media (max-width: 480px) {
+
+        header {
+            font-size: 22px;
+            padding: 15px;
+        }
+
+        .calc-container {
+            width: 90%;
+            padding: 20px;
+        }
+
+        .pantalla {
+            height: 55px;
+            font-size: 20px;
+        }
+
+        .botones {
+            gap: 10px;
+        }
+
+        button {
+            padding: 16px;
+            font-size: 16px;
+        }
+
+        .tab {
+            min-width: 90px;
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        footer {
+            font-size: 12px;
+        }
+    }
+
+    /* Pantallas súper pequeñas (iPhone SE y similares) */
+    @media (max-width: 360px) {
+
+        header {
+            font-size: 20px;
+        }
+
+        .pantalla {
+            height: 50px;
+            font-size: 18px;
+        }
+
+        button {
+            padding: 14px;
+            font-size: 15px;
+        }
+
+        .tab {
+            min-width: 80px;
+            font-size: 13px;
+        }
+    }
 </style>
+
 </head>
 <body>
 
