@@ -14,6 +14,8 @@
         flex-direction: column;
         align-items: center;
         min-height: 100vh;
+        width: 100%;
+        overflow-x: hidden; /* evita que se desborde en móvil */
     }
 
     header {
@@ -24,6 +26,7 @@
         font-size: 26px;
         font-weight: bold;
         border-bottom: 2px solid #133A70;
+        box-sizing: border-box;
     }
 
     /* --- TABS --- */
@@ -33,7 +36,8 @@
         gap: 12px;
         flex-wrap: wrap;
         justify-content: center;
-        width: 95%;
+        width: 100%;
+        max-width: 400px;
     }
 
     .tab {
@@ -58,10 +62,11 @@
         background: white;
         padding: 25px;
         border-radius: 12px;
-        width: 380px; /* para PC */
+        width: 95%;            /* ← SIEMPRE SE AJUSTA EN MOVIL */
+        max-width: 380px;      /* ← NUNCA PASA DE ESTE ANCHO */
         color: black;
-        display: none;
         box-sizing: border-box;
+        display: none;
     }
 
     .active-calc {
@@ -117,70 +122,10 @@
         border: 1px solid black;
         font-size: 16px;
         width: 100%;
+        box-sizing: border-box;
     }
 
-    /* ================================
-         MÓVILES — ADAPTACIÓN REAL
-       ================================ */
-    @media (max-width: 480px) {
-
-        header {
-            font-size: 22px;
-            padding: 15px;
-        }
-
-        /* ajusta contenedor */
-        .calc-container {
-            width: 92% !important;   /* ahora SI se adapta */
-            padding: 18px;
-            margin-top: 15px;
-        }
-
-        .pantalla {
-            height: 55px;
-            font-size: 20px;
-        }
-
-        button {
-            padding: 15px;
-            font-size: 16px;
-        }
-
-        .tabs {
-            width: 100%;
-            gap: 8px;
-        }
-
-        .tab {
-            min-width: 85px;
-            font-size: 14px;
-            padding: 8px 10px;
-        }
-    }
-
-    /* teléfonos muy pequeños */
-    @media (max-width: 360px) {
-
-        .calc-container {
-            width: 95% !important;
-        }
-
-        .pantalla {
-            font-size: 18px;
-            height: 48px;
-        }
-
-        button {
-            font-size: 15px;
-            padding: 13px;
-        }
-
-        .tab {
-            min-width: 80px;
-            font-size: 13px;
-        }
-    }
-
+    /* ---- FOOTER ---- */
     footer {
         margin-top: 35px;
         color: #b8c9e6;
@@ -189,8 +134,10 @@
         width: 100%;
         font-size: 14px;
         border-top: 2px solid #133A70;
+        box-sizing: border-box;
     }
 </style>
+
 
 
 </head>
